@@ -42,7 +42,7 @@ jobs:
 
         run: |
 
-          databricks bundle validate -t default
+          databricks bundle validate -t dev
  
       - name: Deploy DEV Bundle
 
@@ -56,7 +56,7 @@ jobs:
 
         run: |
 
-          databricks bundle deploy -t default
+          databricks bundle deploy -t dev
  
       #################################################
 
@@ -76,7 +76,7 @@ jobs:
 
         run: |
 
-          databricks bundle validate -t default
+          databricks bundle validate -t prod
  
       - name: Deploy PROD Bundle
 
@@ -90,5 +90,5 @@ jobs:
 
         run: |
 
-          databricks bundle deploy -t default
+          databricks bundle deploy -t prod
  
