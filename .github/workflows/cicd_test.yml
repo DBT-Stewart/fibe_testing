@@ -1,0 +1,94 @@
+name: Deploy DAB
+ 
+on:
+
+  push:
+
+    branches:
+
+      - main
+ 
+jobs:
+
+  validate-and-deploy:
+
+    runs-on: ubuntu-latest
+ 
+    steps:
+
+      - name: Checkout Repository
+
+        uses: actions/checkout@v4
+ 
+      - name: Install Databricks CLI
+
+        uses: databricks/setup-cli@main
+ 
+      #################################################
+
+      # DEV
+
+      #################################################
+ 
+      - name: Validate DEV Bundle
+
+        env:
+
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+
+          DATABRICKS_CLIENT_ID: ${{ secrets.CLIENT_ID }}
+
+          DATABRICKS_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+
+        run: |
+
+          databricks bundle validate -t default
+ 
+      - name: Deploy DEV Bundle
+
+        env:
+
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+
+          DATABRICKS_CLIENT_ID: ${{ secrets.CLIENT_ID }}
+
+          DATABRICKS_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+
+        run: |
+
+          databricks bundle deploy -t default
+ 
+      #################################################
+
+      # PROD
+
+      #################################################
+ 
+      - name: Validate PROD Bundle
+
+        env:
+
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+
+          DATABRICKS_CLIENT_ID: ${{ secrets.CLIENT_ID }}
+
+          DATABRICKS_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+
+        run: |
+
+          databricks bundle validate -t default
+ 
+      - name: Deploy PROD Bundle
+
+        env:
+
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+
+          DATABRICKS_CLIENT_ID: ${{ secrets.CLIENT_ID }}
+
+          DATABRICKS_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+
+        run: |
+
+          databricks bundle deploy -t default
+ 
