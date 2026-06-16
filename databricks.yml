@@ -1,0 +1,26 @@
+bundle:
+  name: visual-data-prep
+ 
+include:
+  - resources/*.yml
+ 
+variables:
+  environment:
+    default: dev
+ 
+targets:
+  dev:
+    default: true
+ 
+    workspace:
+      host: https://dbc-a9aee957-443a.cloud.databricks.com
+ 
+    variables:
+      environment: dev
+ 
+  prod:
+    workspace:
+      host: https://dbc-a9aee957-443a.cloud.databricks.com
+      
+    variables:
+      environment: prod

@@ -1,0 +1,20 @@
+resources:
+  jobs:
+    demp_WF_S_check:
+      name: demp_WF-S_check
+      trigger:
+        periodic:
+          interval: 1
+          unit: WEEKS
+      tasks:
+        - task_key: demp_WF-S_check
+          notebook_task:
+            notebook_path: ../demp_WF-S_check.designer.ipynb
+      notification_settings:
+        no_alert_for_skipped_runs: true
+      email_notifications:
+        no_alert_for_skipped_runs: true
+        on_failure:
+          - stewartprince.pm@diggibyte.com
+      queue:
+        enabled: true
